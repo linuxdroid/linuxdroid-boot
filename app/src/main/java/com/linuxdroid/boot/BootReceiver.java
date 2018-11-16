@@ -1,4 +1,4 @@
-package com.termux.boot;
+package com.linuxdroid.boot;
 
 import android.annotation.SuppressLint;
 import android.app.job.JobInfo;
@@ -19,7 +19,7 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (!Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) return;
 
-        @SuppressLint("SdCardPath") final String BOOT_SCRIPT_PATH = "/data/data/com.termux/files/home/.termux/boot";
+        @SuppressLint("SdCardPath") final String BOOT_SCRIPT_PATH = "/data/data/com.linuxdroid/files/home/.linuxdroid/boot";
         final File BOOT_SCRIPT_DIR = new File(BOOT_SCRIPT_PATH);
         File[] files = BOOT_SCRIPT_DIR.listFiles();
         if (files == null) files = new File[0];
@@ -50,9 +50,9 @@ public class BootReceiver extends BroadcastReceiver {
         }
 
         if (logMessage.length() > 0) {
-            Log.i("termux", "Executed files at boot: " + logMessage);
+            Log.i("linuxdroid", "Executed files at boot: " + logMessage);
         } else {
-            Log.i("termux", "No files to execute at boot");
+            Log.i("linuxdroid", "No files to execute at boot");
         }
     }
 

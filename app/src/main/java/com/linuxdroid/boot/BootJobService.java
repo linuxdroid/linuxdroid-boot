@@ -1,4 +1,4 @@
-package com.termux.boot;
+package com.linuxdroid.boot;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
@@ -10,21 +10,21 @@ import android.os.PersistableBundle;
 
 public class BootJobService extends JobService {
 
-    public static final String SCRIPT_FILE_PATH = "com.termux.boot.script_path";
+    public static final String SCRIPT_FILE_PATH = "com.linuxdroid.boot.script_path";
 
-    // Constants from TermuxService.
-    private static final String TERMUX_SERVICE = "com.termux.app.TermuxService";
-    private static final String ACTION_EXECUTE = "com.termux.service_execute";
-    private static final String EXTRA_EXECUTE_IN_BACKGROUND = "com.termux.execute.background";
+    // Constants from LinuxdroidService.
+    private static final String LINUXDROID_SERVICE = "com.linuxdroid.app.LinuxdroidService";
+    private static final String ACTION_EXECUTE = "com.linuxdroid.service_execute";
+    private static final String EXTRA_EXECUTE_IN_BACKGROUND = "com.linuxdroid.execute.background";
 
     @Override
     public boolean onStartJob(JobParameters params) {
         PersistableBundle extras = params.getExtras();
         String filePath = extras.getString(SCRIPT_FILE_PATH);
 
-        Uri scriptUri = new Uri.Builder().scheme("com.termux.file").path(filePath).build();
+        Uri scriptUri = new Uri.Builder().scheme("com.linuxdroid.file").path(filePath).build();
         Intent executeIntent = new Intent(ACTION_EXECUTE, scriptUri);
-        executeIntent.setClassName("com.termux", TERMUX_SERVICE);
+        executeIntent.setClassName("com.linuxdroid", LINUXDROID_SERVICE);
         executeIntent.putExtra(EXTRA_EXECUTE_IN_BACKGROUND, true);
 
         Context context = getApplicationContext();

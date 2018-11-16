@@ -1,4 +1,4 @@
-package com.termux.boot;
+package com.linuxdroid.boot;
 
 import android.app.Activity;
 import android.os.Bundle;
